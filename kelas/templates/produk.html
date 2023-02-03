@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BuyKuy</title>
+  
+  {% include 'link.html' %}
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="#">Buy<strong>Kuy</strong></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="d-flex ms-auto" role="search">
+              <input class="form-control me-2" type="search" placeholder="Cari Barang" aria-label="Cari">
+              <button class="btn btn-outline-success" type="submit">Cari</button>
+            </form>
+        
+            <ul class="navbar-nav m-auto mb-2">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/home">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/produks">Produk</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/produk">Tabel Produk</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/customer">Tabel Customer</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/VBrg">Data</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/addbarang">Tambah barang</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <h1>Data Produk</h1>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">kode_produk</th>
+            <th scope="col">nama</th>
+            <th scope="col">tempat</th>
+            <th scope="col">berat</th>
+            <th scope="col">jumlah</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          {%for Produk in Produks%}
+          <tr>
+            <td>{{ Produk.kode_produk }}</td>
+            <td>{{ Produk.nama }}</td>
+            <td>{{ Produk.tempat }}</td>
+            <td>{{ Produk.berat }}</td>
+            <td>{{ Produk.jumlah }}</td>
+          </tr>
+         {% endfor %}
+        </tbody>
+      </table>
+  </body>
+</html>

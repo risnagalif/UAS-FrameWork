@@ -1,0 +1,112 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BuyKuy</title>
+  
+  {% include 'link.html' %}
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="#">Buy<strong>Kuy</strong></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="d-flex ms-auto" role="search">
+              <input class="form-control me-2" type="search" placeholder="Cari Barang" aria-label="Cari">
+              <button class="btn btn-outline-success" type="submit">Cari</button>
+            </form>
+        
+            <ul class="navbar-nav m-auto mb-2">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/home">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/produks">Produk</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/produk">Tabel Produk</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/customer">Tabel Customer</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/VBrg">Data</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/addbarang">Tambah barang</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+
+
+
+<div class="container">
+    <h2 class="text-center">Daftar Barang</h2>
+    <p><a href="/addbarang" class="btn btn-primary">Tambah Data</a></p>
+    {% for message in messages %}
+      {% if message %}
+        <div class="alert alert-succes">{{ message }}</div>
+      {% endif %}
+    {% endfor %}
+    <table border="1" class="table table-success table-striped">
+        <tr>
+            <th scope="col">Kode Barang</th>
+            <th scope="col">Nama</th>
+            <th scope="col">Stok</th>
+            <th scope="col">Harga</th>
+            <th scope="col">Link Gambar</th>
+            <th scope="col">Jenis</th>
+            <th>Aksi</th>
+            
+          </tr>
+
+          {%for Barang in barangs%}
+          <tr>          
+            <td><a href="{% url 'ubah_brg' Barang.id %}">{{ Barang.kodebrg }}</a></td> 
+            <td>{{ Barang.nama }}</td>
+            <td>{{ Barang.stok }}</td>
+            <td>{{ Barang.harga }}</td>
+            <td>{{ Barang.link_gbr }}</td>
+            <td>{{ Barang.jenis_id.nama }}</td>
+            <td><button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                data-bs-target="#hapus-{{ Barang.id }}">Hapus</button>
+
+                <div class="modal fade" id="hapus-{{ Barang.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="model-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">yakin akan dihapus?</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                      Nama barang : {{ Barang.nama}}
+                      
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <a href="{% url 'hapus_brg' Barang.id %}" class="btn btn-danger">Yakin</a>
+                    
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </td>
+          </tr>
+
+          
+         {% endfor %}
+    </table>
+</div>

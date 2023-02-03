@@ -1,0 +1,19 @@
+
+<div class="container">
+ <h1></h1>Data base barang</h1>
+ <table border="1" class="table">
+        <tr>
+            <th>Nama</th>
+            <th>ket</th>
+
+        </tr>
+        {% for barang in Barang %}
+        <tr>
+            <td>{{barang.kodebrg}}</td>
+            <td>{{barang.nama}}</td>
+        
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
